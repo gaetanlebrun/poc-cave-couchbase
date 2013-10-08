@@ -1,0 +1,5 @@
+{
+    "nom": "Champagne",
+    "appellations": ["Champagne", "Coteaux-champenois", "Rosé-des-riceys"],
+    "type": "Region"
+}

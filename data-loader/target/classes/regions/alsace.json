@@ -1,0 +1,17 @@
+{
+    "nom": "Alsace",
+    "appellations": [
+        "Alsace chasselas ou gutedel",
+        "Alsace edelzwicker",
+        "Alsace gewurztraminer",
+        "Alsace grand cru",
+        "Alsace klevener-de-heiligenstein",
+        "Alsace muscat",
+        "Alsace pinot gris",
+        "Alsace pinot noir",
+        "Alsace pinot ou klevner",
+        "Alsace riesling",
+        "Alsace sylvaner",
+        "Crémant-d'alsace"],
+    "type": "Region"
+}
