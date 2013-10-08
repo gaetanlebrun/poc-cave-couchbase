@@ -1,0 +1,23 @@
+{
+    "nom": "Languedoc",
+    "appellations": ["Blanquette méthode ancestrale",
+        "Blanquette-de-limoux",
+        "Cabardès",
+        "Clairette-du-languedoc",
+        "Corbières",
+        "Corbières-boutenac",
+        "Crémant-de-limoux",
+        "Faugères",
+        "Fitou",
+        "Languedoc",
+        "Limoux",
+        "Malepère",
+        "Minervois",
+        "Minervois-la-livinière",
+        "Muscat-de-frontignan",
+        "Muscat-de-lunel",
+        "Muscat-de-mireval",
+        "Muscat-de-saint-jean-de-minervois",
+        "Saint-chinian"],
+    "type": "Region"
+}

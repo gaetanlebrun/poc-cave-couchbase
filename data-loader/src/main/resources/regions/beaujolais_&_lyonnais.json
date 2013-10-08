@@ -1,0 +1,19 @@
+{
+    "nom": "Beaujolais et Lyonnais",
+    "appellations": [
+        "Beaujolais",
+        "Beaujolais supérieur",
+        "Beaujolais-villages",
+        "Brouilly",
+        "Chénas",
+        "Chiroubles",
+        "Côte-de-brouilly",
+        "Coteaux-du-lyonnais",
+        "Fleurie",
+        "Juliénas",
+        "Morgon",
+        "Moulin-à-vent",
+        "Régnié",
+        "Saint-amour"],
+    "type": "Region"
+}

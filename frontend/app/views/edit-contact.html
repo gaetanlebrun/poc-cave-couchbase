@@ -1,0 +1,35 @@
+<div class="span8 offset2">
+    <h1>Envoyer un message</h1>
+
+    <div class="alert alert-success">
+        <button type="button" class="close" ng-click="hideAlert()">×</button>
+        Le message a bien été envoyé.
+    </div>
+    <div id="contactFormHolder">
+        <form id="contactForm">
+            <div class="control-group">
+                <div>
+                    <div class="input-prepend">
+                        <span class="add-on">@</span>
+                        <input type="email" name="email" ng-model="message.email" placeholder="Email" required>
+                        <span ng-show="contactForm.email.$error.required" class="help-inline">*</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="input-prepend">
+                        <span class="add-on">#</span>
+                        <input type="text" name="sujet" ng-model="message.sujet" placeholder="Sujet" required>
+                        <span ng-show="contactForm.sujet.$error.required" class="help-inline">*</span>
+                    </div>
+                </div>
+
+                <label>Message</label>
+                <textarea name="contenu" ng-model="message.contenu" required/>
+                <span ng-show="contactForm.contenu.$error.required" class="help-inline">*</span>
+            </div>
+        </form>
+        <button ng-click="save()" ng-disabled="isClean() || contactForm.$invalid" class="btn btn-primary">Envoyer
+        </button>
+    </div>
+</div>

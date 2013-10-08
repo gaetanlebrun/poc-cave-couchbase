@@ -1,0 +1,51 @@
+<div class="span8 offset2">
+    <form name="domaineForm">
+        <div class="control-group">
+            <label>Nom<span ng-show="domaineForm.nom.$error.required">*</span></label>
+            <input type="text" name="nom" ng-model="domaine.nom" required>
+        </div>
+
+        <div class="control-group">
+            <label>Localisation<span
+                    ng-show="domaineForm.adresse.$error.required || domaineForm.ville.$error.required || domaineForm.pays.$error.required">*</span></label>
+
+            <div class="controls" class="controls-row">
+                <input type="text" name="adresse" ng-model="domaine.adresse" placeholder="Adresse" required>
+                <input type="text" name="ville" ng-model="domaine.ville" placeholder="Ville" required>
+                <input type="text" name="pays" ng-model="domaine.pays" placeholder="Pays" required>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Contact</label>
+
+            <div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-globe"></i></span>
+                    <input type="url" name="web" ng-model="domaine.web" placeholder="Site web">
+                </div>
+            </div>
+
+            <div>
+                <div class="input-prepend">
+                    <span class="add-on">@</span>
+                    <input type="email" name="email" ng-model="domaine.email" placeholder="Email">
+                </div>
+            </div>
+
+            <div>
+                <div class="input-prepend">
+                    <span class="add-on"></span>
+                    <input type="text" name="sujet" ng-model="message.sujet" placeholder="Téléphone">
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+        <a href="#/list/domaines" class="btn">Cancel</a>
+        <button ng-click="save()" ng-disabled="isClean() || domaineForm.$invalid" class="btn btn-primary">Save
+        </button>
+        <button ng-click="destroy()" ng-show="domaine.id" class="btn btn-danger">Delete</button>
+    </form>
+</div>
