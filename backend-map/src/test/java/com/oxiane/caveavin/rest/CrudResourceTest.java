@@ -43,7 +43,7 @@ import static org.junit.Assert.*;
  * Date: 09/10/13
  * Time: 11:59
  */
-public abstract class CrudResourceTest<V> extends AbstractResourceTest<V> {
+public abstract class CrudResourceTest extends AbstractResourceTest {
   // ------------------------------ FIELDS ------------------------------
 
   private ResourceTestContext context;

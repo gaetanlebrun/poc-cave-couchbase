@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml"})
-public class VinResourceTest extends AbstractResourceTest<Vin> {
+public class VinResourceTest extends CrudResourceTest<Vin> {
   // -------------------------- PRIVATE METHODS --------------------------
 
   @Override
@@ -45,18 +45,18 @@ public class VinResourceTest extends AbstractResourceTest<Vin> {
                     "\"millesime\":2010," +
                     "\"appellation\":\"Savennières\"," +
                     "\"region\":\"Loire\"," +
-                    "\"couleur\":\"Vin Blanc\"," +
+                    "\"typeVin\":\"Vin Blanc\"," +
                     "\"cepages\":\"Riesling\"," +
                     "\"terroirs\":\"Plateau situé au plus haut de l'appellation, au pied du moulin du Grand Beaupréau, en légère pente Sud\"," +
                     "\"vendanges\":\"manuelles, par tris successifs en octobre\"," +
                     "\"degre\":13.5" +
+//                    ",\"etiquette\":\"path\\to\\snapshot.png\""+
                     "}"
     );
   }
 
   // -------------------------- PUBLIC METHODS --------------------------
 
-  @Override
   @Resource(name = "vinResource")
   public void setResource(CrudResource<Vin> resource) {
     super.setResource(resource);

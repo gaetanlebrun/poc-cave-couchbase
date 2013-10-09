@@ -33,18 +33,18 @@ import com.oxiane.caveavin.dao.ICouchDao;
  * Date: 08/10/13
  * Time: 17:40
  */
-public class AbstractResource {
+public class AbstractResource<V> {
   // ------------------------------ FIELDS ------------------------------
 
-  private ICouchDao dao;
+  private ICouchDao<V> dao;
 
   // --------------------- GETTER / SETTER METHODS ---------------------
 
-  public void setDao(ICouchDao dao) {
+  public void setDao(ICouchDao<V> dao) {
     this.dao = dao;
   }
 
-  protected ICouchDao getDao() {
+  protected ICouchDao<V> getDao() {
     return dao;
   }
 }

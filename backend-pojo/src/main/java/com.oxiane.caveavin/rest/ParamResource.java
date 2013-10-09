@@ -42,11 +42,11 @@ import java.util.Map;
  * Time: 17:38
  */
 @Path("rest/param")
-public class ParamResource extends AbstractResource {
+public class ParamResource extends AbstractResource<Map<String, Object>> {
 
-  private final IDocMapper docMapper = new AbstractDocMapper() {
+  private final IDocMapper<Map<String, Object>> docMapper = new AbstractDocMapper<Map<String, Object>>() {
     @Override
-    public Map<String, Object> toMap(String id, String doc) {
+    public Map<String, Object> toEntity(String id, String doc) {
       Map<String, Object> map = new LinkedHashMap<String, Object>();
       map.put("id", id);
       map.put("nom", doc);

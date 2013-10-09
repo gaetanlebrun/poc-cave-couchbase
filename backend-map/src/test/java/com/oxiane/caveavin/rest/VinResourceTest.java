@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml"})
-public class VinResourceTest extends AbstractResourceTest {
+public class VinResourceTest extends CrudResourceTest {
   // -------------------------- PRIVATE METHODS --------------------------
 
   @Override
@@ -56,7 +56,6 @@ public class VinResourceTest extends AbstractResourceTest {
 
   // -------------------------- PUBLIC METHODS --------------------------
 
-  @Override
   @Resource(name = "vinResource")
   public void setResource(CrudResource resource) {
     super.setResource(resource);

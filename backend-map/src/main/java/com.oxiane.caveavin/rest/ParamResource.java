@@ -27,6 +27,7 @@
 package com.oxiane.caveavin.rest;
 
 import com.oxiane.caveavin.mapper.IDocMapper;
+import com.oxiane.caveavin.mapper.impl.AbstractDocMapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -42,30 +43,28 @@ import java.util.Map;
  */
 @Path("rest/param")
 public class ParamResource extends AbstractResource {
+
+  private final IDocMapper docMapper = new AbstractDocMapper() {
+    @Override
+    public Map<String, Object> toMap(String id, String doc) {
+      Map<String, Object> map = new LinkedHashMap<String, Object>();
+      map.put("id", id);
+      map.put("nom", doc);
+      return map;
+    }
+  };
+
   @GET
   @Path("regions/by_name")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<Map<String, Object>> find(@QueryParam("startKey") String startKey, @QueryParam("endKey") String endKey) {
-    return getDao().findAll("region_by_name", startKey, endKey, new IDocMapper() {
-      @Override
-      public Map<String, Object> toMap(String id, String doc) {
-        Map<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("id", id);
-        map.put("nom", doc);
-        return map;
-      }
-
-      @Override
-      public String toString(Map<String, Object> map) {
-        return null;
-      }
-    });
+  public List<Map<String, Object>> regionsByName(@QueryParam("startKey") String startKey, @QueryParam("endKey") String endKey) {
+    return getDao().findAll("region_by_name", startKey, endKey, docMapper);
   }
 
   @GET
   @Path("{idRegion}/appellations")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<String> find(@PathParam("idRegion") String idRegion) {
+  public List<String> appellations(@PathParam("idRegion") String idRegion) {
     final Map<String, Object> map = getDao().find(idRegion);
     //noinspection unchecked
     return map == null ? Collections.<String>emptyList() : (List<String>) map.get("appellations");
@@ -74,7 +73,7 @@ public class ParamResource extends AbstractResource {
   @GET
   @Path("vin/caracteristiques")
   @Produces(MediaType.APPLICATION_JSON)
-  public Map<String, Object> find() {
+  public Map<String, Object> types() {
     return getDao().find("param::vin::caracteristiques");
   }
 }

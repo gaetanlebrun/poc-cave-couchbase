@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml"})
-public class DomaineResourceTest extends AbstractResourceTest<Domaine> {
+public class DomaineResourceTest extends CrudResourceTest<Domaine> {
   // -------------------------- PRIVATE METHODS --------------------------
 
   @Override
@@ -56,7 +56,10 @@ public class DomaineResourceTest extends AbstractResourceTest<Domaine> {
   @Override
   protected void findAll() throws IOException {
     super.findAll();
+    findAllByName();
+  }
 
+  private void findAllByName() throws IOException {
     String result = getJersey().resource().path(getContext().getUrl() + "/by_name")
             .queryParam("startKey", "Châte")
             .queryParam("endKey", "Châte\\u9999")
@@ -64,7 +67,7 @@ public class DomaineResourceTest extends AbstractResourceTest<Domaine> {
             .get(String.class);
     assertNotNull(result);
     //noinspection unchecked
-    List<Map<String, Object>> list = (List<Map<String, Object>>) getMapper().readValue(result, List.class);
+    List<Map<String, Object>> list = getMapList(result);
     assertTrue(list.size() > 0);
     for (Map<String, Object> map : list) {
       assertExcerptByName(map);
@@ -78,7 +81,6 @@ public class DomaineResourceTest extends AbstractResourceTest<Domaine> {
 
   // -------------------------- PUBLIC METHODS --------------------------
 
-  @Override
   @Resource(name = "domaineResource")
   public void setResource(CrudResource<Domaine> resource) {
     super.setResource(resource);

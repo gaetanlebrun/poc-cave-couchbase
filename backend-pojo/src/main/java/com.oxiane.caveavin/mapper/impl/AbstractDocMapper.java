@@ -26,23 +26,23 @@
  */
 package com.oxiane.caveavin.mapper.impl;
 
+import com.oxiane.caveavin.exception.DocMappingException;
 import com.oxiane.caveavin.mapper.IDocMapper;
-
-import java.util.Map;
 
 /**
  * User: LEBRUN_G
  * Date: 09/10/13
  * Time: 11:34
  */
-public abstract class AbstractDocMapper implements IDocMapper {
+public class AbstractDocMapper<V> implements IDocMapper<V> {
+
   @Override
-  public Map<String, Object> toMap(String id, String doc) {
+  public V toEntity(String id, String doc) throws DocMappingException {
     throw new UnsupportedOperationException("A rédéfinir dans les sous-classes");
   }
 
   @Override
-  public String toString(Map<String, Object> map) {
+  public String toString(V entity) throws DocMappingException {
     throw new UnsupportedOperationException("A rédéfinir dans les sous-classes");
   }
 }

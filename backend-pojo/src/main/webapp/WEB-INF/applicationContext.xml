@@ -60,6 +60,17 @@
         <constructor-arg index="3" value="domaine_exerpt"/>
     </bean>
 
+    <bean id="paramDao" class="com.oxiane.caveavin.dao.impl.CouchDao">
+        <constructor-arg index="0" ref="couchbaseClient"/>
+        <constructor-arg index="1">
+            <bean class="com.oxiane.caveavin.mapper.impl.DocMapper">
+                <constructor-arg type="java.lang.Class" value="java.util.Map"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="2" value="caveavin"/>
+        <constructor-arg index="3" value=""/>
+    </bean>
+
     <bean id="domaineResource" class="com.oxiane.caveavin.rest.DomaineResource">
         <property name="dao" ref="domaineDao"/>
     </bean>
@@ -70,6 +81,10 @@
 
     <bean id="contactResource" class="com.oxiane.caveavin.rest.ContactResource">
         <property name="dao" ref="contactDao"/>
+    </bean>
+
+    <bean id="paramResource" class="com.oxiane.caveavin.rest.ParamResource">
+        <property name="dao" ref="paramDao"/>
     </bean>
 
 

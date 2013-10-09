@@ -47,7 +47,7 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml"})
-public class ParamResourceTest extends AbstractResourceTest<Map<String, Object>> {
+public class ParamResourceTest extends AbstractResourceTest {
   // -------------------------- PUBLIC METHODS --------------------------
 
   @Test
@@ -79,7 +79,7 @@ public class ParamResourceTest extends AbstractResourceTest<Map<String, Object>>
   }
 
   @Resource(name = "paramResource")
-  public void setResource(AbstractResource<Map<String, Object>> resource) {
+  public void setResource(AbstractResource resource) {
     super.setResource(resource);
   }
 

@@ -26,7 +26,6 @@
  */
 package com.oxiane.caveavin.mapper.impl;
 
-import com.oxiane.caveavin.bean.AbstractBean;
 import com.oxiane.caveavin.exception.DocMappingException;
 import com.oxiane.caveavin.mapper.IDocMapper;
 import com.oxiane.caveavin.provider.ObjectMapperContextResolver;
@@ -39,7 +38,7 @@ import java.util.Map;
  * Date: 30/09/13
  * Time: 13:47
  */
-public class DocMapper<V extends AbstractBean> implements IDocMapper<V> {
+public class DocMapper<V> implements IDocMapper<V> {
   // ------------------------------ FIELDS ------------------------------
 
   private Class<V>     classeEntite;

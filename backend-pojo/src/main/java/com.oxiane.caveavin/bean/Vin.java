@@ -39,7 +39,7 @@ public class Vin extends AbstractBean {
   private Integer millesime;
   private String  appellation;
   private String  region;
-  private String  couleur;
+  private String  typeVin;
   private String  cepages;
   private String  terroirs;
   private String  vendanges;
@@ -68,12 +68,12 @@ public class Vin extends AbstractBean {
     this.cepages = cepages;
   }
 
-  public String getCouleur() {
-    return couleur;
+  public String getTypeVin() {
+    return typeVin;
   }
 
-  public void setCouleur(String couleur) {
-    this.couleur = couleur;
+  public void setTypeVin(String typeVin) {
+    this.typeVin = typeVin;
   }
 
   public Float getDegre() {

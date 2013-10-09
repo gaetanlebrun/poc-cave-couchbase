@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml"})
-public class DomaineResourceTest extends AbstractResourceTest {
+public class DomaineResourceTest extends CrudResourceTest {
   // -------------------------- PRIVATE METHODS --------------------------
 
   @Override
@@ -77,7 +77,6 @@ public class DomaineResourceTest extends AbstractResourceTest {
 
   // -------------------------- PUBLIC METHODS --------------------------
 
-  @Override
   @Resource(name = "domaineResource")
   public void setResource(CrudResource resource) {
     super.setResource(resource);

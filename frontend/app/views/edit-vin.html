@@ -24,7 +24,7 @@
 
         <div class="control-group">
             <label>Caractéristiques<span
-                    ng-show="vinForm.couleur.$error.required || vinForm.cepages.$error.required || vinForm.degre.$error.required">*</span></label>
+                    ng-show="vinForm.typeVin.$error.required || vinForm.cepages.$error.required || vinForm.degre.$error.required">*</span></label>
 
             <div class="controls">
                 <input type="text" name="typeVin" ng-model="vin.typeVin" typeahead="type for type in types | filter:$viewValue" placeholder="Type" required>

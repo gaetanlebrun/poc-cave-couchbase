@@ -40,7 +40,7 @@ import java.util.Map;
  * Date: 07/10/13
  * Time: 18:50
  */
-public class DocMapper implements IDocMapper {
+public class DocMapper extends AbstractDocMapper implements IDocMapper {
   private final ObjectMapper mapper;
   private       String       type;
 

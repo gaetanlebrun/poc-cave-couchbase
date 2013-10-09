@@ -1,6 +1,5 @@
 package com.oxiane.caveavin.rest;
 
-import com.oxiane.caveavin.dao.ICouchDao;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ws.rs.*;
@@ -10,20 +9,7 @@ import java.text.Normalizer;
 import java.util.List;
 
 
-public abstract class CrudResource<V> {
-  // ------------------------------ FIELDS ------------------------------
-
-  private ICouchDao<V> dao;
-
-  // --------------------- GETTER / SETTER METHODS ---------------------
-
-  protected ICouchDao<V> getDao() {
-    return dao;
-  }
-
-  public void setDao(ICouchDao<V> dao) {
-    this.dao = dao;
-  }
+public abstract class CrudResource<V> extends AbstractResource<V> {
 
   // -------------------------- PRIVATE METHODS --------------------------
 
@@ -40,7 +26,7 @@ public abstract class CrudResource<V> {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public V create(V entity) {
-    return dao.create(getNormalizedId(entity), entity);
+    return getDao().create(getNormalizedId(entity), entity);
   }
 
   protected abstract String getNormalizedId(V entity);
@@ -49,7 +35,7 @@ public abstract class CrudResource<V> {
   @Path("{id}")
   @Produces(MediaType.APPLICATION_OCTET_STREAM)
   public Response delete(@PathParam("id") String id) {
-    dao.delete(id);
+    getDao().delete(id);
     return Response.status(200).build();
   }
 
@@ -57,13 +43,13 @@ public abstract class CrudResource<V> {
   @Path("{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public V find(@PathParam("id") String id) {
-    return dao.find(id);
+    return getDao().find(id);
   }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public List<V> findAll() {
-    return dao.findAll();
+    return getDao().findAll();
   }
 
   @PUT
@@ -71,6 +57,6 @@ public abstract class CrudResource<V> {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public V update(@PathParam("id") String id, V entity) {
-    return dao.update(id, entity);
+    return getDao().update(id, entity);
   }
 }
