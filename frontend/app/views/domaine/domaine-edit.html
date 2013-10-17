@@ -1,5 +1,5 @@
 <div class="span8 offset2">
-    <form name="domaineForm">
+    <form name="domaineForm" crud-edit="domaine">
         <div class="control-group">
             <label>Nom<span ng-show="domaineForm.nom.$error.required">*</span></label>
             <input type="text" name="nom" ng-model="domaine.nom" required>
@@ -43,9 +43,12 @@
         </div>
 
         <br>
-        <a href="#/list/domaines" class="btn">Cancel</a>
-        <button ng-click="save()" ng-disabled="isClean() || domaineForm.$invalid" class="btn btn-primary">Save
-        </button>
-        <button ng-click="destroy()" ng-show="domaine.id" class="btn btn-danger">Delete</button>
+        <div class="control-group">
+            <div class="controls">
+                <a href="#/list/domaines" class="btn">Cancel</a>
+                <button ng-click="save()" ng-disabled="!canSave()" class="btn btn-primary">Save</button>
+                <button ng-click="destroy()" ng-show="canDestroy()" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
     </form>
 </div>

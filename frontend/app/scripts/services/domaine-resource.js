@@ -6,9 +6,14 @@ angular.module('caveResources', ['ngResource'])
             var CrudResource = $resource(url,
                 {},
                 {
-                    update: { method: 'PUT' }
+                    update: { method: 'PUT' },
+                    save: { method: 'POST' }
                 }
             );
+
+            CrudResource.prototype.save = function (cb) {
+                return CrudResource.save(this, cb);
+            };
 
             CrudResource.prototype.update = function (cb) {
                 return CrudResource.update({id: this.id},
