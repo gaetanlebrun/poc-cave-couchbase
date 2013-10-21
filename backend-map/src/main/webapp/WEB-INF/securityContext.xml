@@ -1,0 +1,35 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                    http://www.springframework.org/schema/security
+                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http auto-config='true' entry-point-ref="authenticationEntryPoint">
+        <form-login authentication-success-handler-ref="ajaxAuthenticationSuccessHandler"
+                    authentication-failure-handler-ref="ajaxAuthenticationFailureHandler"/>
+        <logout success-handler-ref="ajaxLogoutSuccessHandler"/>
+    </http>
+
+    <beans:bean id="authenticationEntryPoint" class="com.oxiane.caveavin.security.Http401DeniedEntryPoint"/>
+    <beans:bean id="ajaxAuthenticationSuccessHandler"
+                class="com.oxiane.caveavin.security.AjaxAuthenticationSuccessHandler"/>
+    <beans:bean id="ajaxAuthenticationFailureHandler"
+                class="com.oxiane.caveavin.security.AjaxAuthenticationFailureHandler"/>
+    <beans:bean id="ajaxLogoutSuccessHandler" class="com.oxiane.caveavin.security.AjaxLogoutSuccessHandler"/>
+
+    <beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder ref="encoder"/>
+            <user-service>
+                <user name="rod"
+                      password="864acff7515e4e419d4266e474ea14a889dce340784038b704a30453e01245eed374f881f3df8e1e"
+                      authorities="user"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>
