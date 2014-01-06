@@ -40,10 +40,9 @@ import java.util.Arrays;
  * Time: 17:02
  */
 public class DataLoader {
-
+  // --------------------------- main() method ---------------------------
 
   public static void main(String[] args) throws URISyntaxException, IOException {
-
     CouchbaseClient client = new CouchbaseClient(
             Arrays.asList(new URI("http://127.0.0.1:8091/pools")),
             "oxiane",
@@ -55,7 +54,5 @@ public class DataLoader {
       client.set("param::region::" + file.getName().split("\\.")[0], FileUtils.readFileToString(file));
     }
     client.set("param::vin::caracteristiques", FileUtils.readFileToString(new File(DataLoader.class.getResource("/caracteristiques.json").getPath())));
-
-
   }
 }

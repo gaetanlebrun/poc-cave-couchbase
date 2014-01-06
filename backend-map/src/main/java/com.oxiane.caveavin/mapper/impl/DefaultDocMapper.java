@@ -1,7 +1,7 @@
 /* +-----------------------------------------------------------------------------------------------+
  *                                                                                                
- *  Titre          : DocMapper                                                                 
- *  Description    : DÃ©finition                                         
+ *  Titre          : SimpleDocMapper                                                                 
+ *  Description    : Définition                                         
  *  Copyright      : Cofiroute 2013                                                            
  *  Societe        : Cofiroute                                                                    
  *  Author         : LEBRUN_G                                                                      
@@ -14,7 +14,7 @@
  *  Historique des mises a jour :                                                                 
  *  Auteur Date       Description                                                                 
  *  ------- ------------------------------------------------------------------------------------- 
- *  LEBRUN_G 07/10/13 Creation                                                                      
+ *  LEBRUN_G 23/10/13 Creation                                                                      
  *                                                                                                
  * +-----------------------------------------------------------------------------------------------+
  *  Remarques :                                                                                   
@@ -26,56 +26,43 @@
  */
 package com.oxiane.caveavin.mapper.impl;
 
-import com.oxiane.caveavin.exception.DocMappingException;
-import com.oxiane.caveavin.mapper.IDocMapper;
-import com.oxiane.caveavin.provider.ObjectMapperContextResolver;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * User: LEBRUN_G
- * Date: 07/10/13
- * Time: 18:50
+ * Date: 23/10/13
+ * Time: 12:11
  */
-public class DocMapper extends AbstractDocMapper implements IDocMapper {
-  private final ObjectMapper mapper;
-  private       String       type;
+public class DefaultDocMapper extends AbstractDocMapper {
+  // ------------------------------ FIELDS ------------------------------
 
-  public DocMapper(String type) {
-    this.mapper = new ObjectMapperContextResolver().getContext(Map.class);
-    this.type = type;
+  private ObjectMapper mapper;
+
+  // --------------------- GETTER / SETTER METHODS ---------------------
+
+  public ObjectMapper getMapper() {
+    return mapper;
+  }
+
+  public void setMapper(ObjectMapper mapper) {
+    this.mapper = mapper;
+  }
+
+  // -------------------------- PRIVATE METHODS --------------------------
+
+  @Override
+  protected Map<String, Object> basicToMap(String id, String doc) throws Exception {
+    //noinspection unchecked
+    final Map<String, Object> map = (Map<String, Object>) mapper.readValue(doc, Map.class);
+    map.put("id", id);
+    return map;
   }
 
   @Override
-  public Map<String, Object> toMap(String id, String doc) {
-    if (doc == null) {
-      return null;
-    }
-    try {
-      //noinspection unchecked
-      final Map<String, Object> map = (Map<String, Object>) mapper.readValue(doc, Map.class);
-      map.put("id", id);
-      map.remove("type");
-      return map;
-    } catch (IOException e) {
-      throw new DocMappingException(e);
-    }
-  }
-
-  @Override
-  public String toString(Map<String, Object> map) {
-    if (map == null) {
-      return null;
-    }
-    try {
-      Map<String, Object> newMap = new LinkedHashMap<String, Object>(map);
-      newMap.put("type", this.type);
-      return mapper.writeValueAsString(newMap);
-    } catch (IOException e) {
-      throw new DocMappingException(e);
-    }
+  protected String basicToString(Map<String, Object> map) throws Exception {
+    return mapper.writeValueAsString(new LinkedHashMap<String, Object>(map));
   }
 }

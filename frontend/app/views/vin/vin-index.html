@@ -1,4 +1,4 @@
-<div class="span8 offset2">
+<div ng-show="isLogged" class="span8 offset2">
     <p>
         <input type="text" ng-model="search" class="search-query" placeholder="Search">
     </p>
@@ -17,8 +17,7 @@
         <tbody>
         <tr ng-repeat="vin in vins | filter:search | orderBy:'nom'">
             <td>
-                <a ng-show="vin.domaine.id != ''"
-                   href="{{vin.domaine.id && '#/edit/domaine/' + vin.domaine.id || '#/new/domaine/' }}">{{vin.domaine.nom}}</a>
+                <a href="{{'#/domaine/show/' + vin.domaine.id}}">{{vin.domaine.nom}}</a>
             </td>
             <td>{{vin.nom}}</td>
             <td>{{vin.millesime}}</td>

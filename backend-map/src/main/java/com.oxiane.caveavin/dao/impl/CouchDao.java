@@ -28,49 +28,45 @@ package com.oxiane.caveavin.dao.impl;
 
 import com.couchbase.client.CouchbaseClient;
 import com.couchbase.client.protocol.views.*;
-import com.oxiane.caveavin.dao.ICouchDao;
+import com.oxiane.caveavin.dao.ICouchDAO;
 import com.oxiane.caveavin.exception.DocMappingException;
 import com.oxiane.caveavin.mapper.IDocMapper;
-import com.oxiane.caveavin.mapper.impl.DocMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * User: LEBRUN_G
  * Date: 30/09/13
  * Time: 14:06
  */
-public class CouchDao implements ICouchDao {
+public class CouchDao implements ICouchDAO {
   // ------------------------------ FIELDS ------------------------------
 
-  private final String          allView;
-  private final CouchbaseClient client;
-  private final String          design;
-  private       IDocMapper      docMapper;
+  private CouchbaseClient client;
+  private String          design;
 
-  // --------------------------- CONSTRUCTORS ---------------------------
-  public CouchDao(CouchbaseClient client, String design) {
-    this(client, design, null, null);
+  // --------------------- GETTER / SETTER METHODS ---------------------
+
+  public void setClient(CouchbaseClient client) {
+    this.client = client;
   }
 
-  public CouchDao(CouchbaseClient client, String design, String allView, String type) {
-    this.client = client;
+  public void setDesign(String design) {
     this.design = design;
-    this.allView = allView;
-    this.docMapper = new DocMapper(type);
   }
 
   // ------------------------ INTERFACE METHODS ------------------------
 
 
-  // --------------------- Interface ICouchDao ---------------------
+  // --------------------- Interface ICouchDAO ---------------------
 
   @Override
-  public Map<String, Object> create(String id, Map<String, Object> map) throws DocMappingException {
-    client.set(id, docMapper.toString(map));
-    return find(id);
+  public Map<String, Object> create(String id, Map<String, Object> map, IDocMapper mapper) throws DocMappingException {
+    client.set(id, mapper.toString(map));
+    return find(id, mapper);
   }
 
   @Override
@@ -79,31 +75,26 @@ public class CouchDao implements ICouchDao {
   }
 
   @Override
-  public Map<String, Object> find(String id) throws DocMappingException {
-    return docMapper.toMap(id, (String) client.get(id));
+  public Map<String, Object> find(String id, IDocMapper mapper) throws DocMappingException {
+    return mapper.toMap(id, (String) client.get(id));
   }
 
   @Override
-  public List<Map<String, Object>> findAll() throws DocMappingException {
-    View view = client.getView(design, allView);
-    final Query query = new Query();
-    //query.setIncludeDocs(true);
-    return executeQuery(view, query, docMapper);
+  public List<Map<String, Object>> findAll(String viewName, IDocMapper mapper) throws DocMappingException {
+    return executeQuery(client.getView(design, viewName), new Query(), mapper);
   }
 
   @Override
-  public Map<String, Object> update(String id, Map<String, Object> map) throws DocMappingException {
-    client.replace(id, docMapper.toString(map));
-    return find(id);
+  public Map<String, Object> update(String id, Map<String, Object> map, IDocMapper mapper) throws DocMappingException {
+    client.replace(id, mapper.toString(map));
+    return find(id, mapper);
   }
 
   @Override
   public List<Map<String, Object>> findAll(String viewName, String startKey, String endKey, IDocMapper mapper) throws DocMappingException {
-    View view = client.getView(design, viewName);
     final Query query = new Query();
     query.setRange(startKey, endKey);
-    //query.setIncludeDocs(true);
-    return executeQuery(view, query, mapper);
+    return executeQuery(client.getView(design, viewName), query, mapper);
   }
 
   // -------------------------- PRIVATE METHODS --------------------------
@@ -116,5 +107,11 @@ public class CouchDao implements ICouchDao {
       docs.add(mapper.toMap(row.getId(), row.getKey()));
     }
     return docs;
+  }
+
+  // -------------------------- PUBLIC METHODS --------------------------
+
+  public void destroy() {
+    client.shutdown(1, TimeUnit.SECONDS);
   }
 }

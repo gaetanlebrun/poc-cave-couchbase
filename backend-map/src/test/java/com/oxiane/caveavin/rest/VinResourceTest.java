@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
  * Time: 14:40
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml"})
+@ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml","/WEB-INF/securityContext.xml"})
 public class VinResourceTest extends CrudResourceTest {
   // -------------------------- PRIVATE METHODS --------------------------
 

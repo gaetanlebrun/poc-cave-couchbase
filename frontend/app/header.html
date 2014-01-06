@@ -1,9 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid span8 offset2">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Cave à vin</a>
 
-</body>
-</html>
+            <div class="nav-collapse collapse" ng-controller="HeaderCtrl">
+                <!--<div class="nav-collapse collapse">-->
+                <ul class="nav">
+                    <li ng-class="{active:isActive('/')}"><a href="#/">Home</a></li>
+                    <li ng-class="{active:isActive('/vin/index')}"><a href="#/vin/index">Vins</a></li>
+                    <li ng-class="{active:isActive('/domaine/index')}"><a href="#/domaine/index">Domaines</a></li>
+                    <li ng-class="{active:isActive('/contact')}"><a href="#/contact">Contact</a></li>
+                    <login-toolbar />
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>

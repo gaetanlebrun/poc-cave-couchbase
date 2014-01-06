@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
  * Time: 14:40
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml"})
+@ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml","/WEB-INF/securityContext.xml"})
 public class DomaineResourceTest extends CrudResourceTest {
   // -------------------------- PRIVATE METHODS --------------------------
 

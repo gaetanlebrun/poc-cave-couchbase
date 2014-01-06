@@ -1,35 +1,46 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-             xmlns:beans="http://www.springframework.org/schema/beans"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans
-                    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-                    http://www.springframework.org/schema/security
-                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+<beans:beans
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns="http://www.springframework.org/schema/security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <http auto-config='true' entry-point-ref="authenticationEntryPoint">
-        <form-login authentication-success-handler-ref="ajaxAuthenticationSuccessHandler"
-                    authentication-failure-handler-ref="ajaxAuthenticationFailureHandler"/>
-        <logout success-handler-ref="ajaxLogoutSuccessHandler"/>
+    <http realm="Protected API"
+          use-expressions="true"
+          auto-config="false"
+          create-session="stateless"
+          entry-point-ref="unauthorizedEntryPoint"
+          authentication-manager-ref="authenticationManager">
+        <custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER"/>
+        <intercept-url pattern="/auth/login" access="permitAll"/>
+        <intercept-url method="GET" pattern="/rest/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url method="PUT" pattern="/rest/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url method="POST" pattern="/rest/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url method="DELETE" pattern="/rest/**" access="hasRole('ROLE_ADMIN')"/>
     </http>
 
-    <beans:bean id="authenticationEntryPoint" class="com.oxiane.caveavin.security.Http401DeniedEntryPoint"/>
-    <beans:bean id="ajaxAuthenticationSuccessHandler"
-                class="com.oxiane.caveavin.security.AjaxAuthenticationSuccessHandler"/>
-    <beans:bean id="ajaxAuthenticationFailureHandler"
-                class="com.oxiane.caveavin.security.AjaxAuthenticationFailureHandler"/>
-    <beans:bean id="ajaxLogoutSuccessHandler" class="com.oxiane.caveavin.security.AjaxLogoutSuccessHandler"/>
+    <beans:bean id="unauthorizedEntryPoint" class="com.oxiane.caveavin.security.UnauthorizedEntryPoint"/>
 
-    <beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+    <beans:bean id="authenticationProvider"
+                class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="userService"/>
+    </beans:bean>
 
-    <authentication-manager>
-        <authentication-provider>
-            <password-encoder ref="encoder"/>
-            <user-service>
-                <user name="rod"
-                      password="864acff7515e4e419d4266e474ea14a889dce340784038b704a30453e01245eed374f881f3df8e1e"
-                      authorities="user"/>
-            </user-service>
-        </authentication-provider>
+    <authentication-manager id="authenticationManager">
+        <authentication-provider ref="authenticationProvider"/>
     </authentication-manager>
+
+    <user-service id="userService">
+        <user name="jimi" password="jimi" authorities="ROLE_USER, ROLE_ADMIN"/>
+        <user name="bob" password="bob" authorities="ROLE_USER"/>
+    </user-service>
+
+    <beans:bean class="com.oxiane.caveavin.security.AuthenticationTokenProcessingFilter"
+                id="authenticationTokenProcessingFilter">
+        <beans:constructor-arg ref="authenticationManager"/>
+        <beans:constructor-arg ref="userService"/>
+    </beans:bean>
 
 </beans:beans>

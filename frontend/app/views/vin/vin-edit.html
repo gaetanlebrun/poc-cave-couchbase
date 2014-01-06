@@ -1,4 +1,4 @@
-<div class="span8 offset2">
+<div ng-show="isLogged" class="span8 offset2">
     <form name="vinForm" crud-edit="vin">
 
         <div class="control-group">
@@ -6,7 +6,8 @@
                     ng-show="vinForm.domaine.$error.required || vinForm.domaineId.$error.required || vinForm.nom.$error.required || vinForm.millesime.$error.required">*</span></label>
 
             <div class="controls" class="controls-row">
-                <input type="text" name="domaine" ng-model="vin.domaine" typeahead="domaine as domaine.nom for domaine in domaines($viewValue)" placeholder="Domaine">
+                <input type="text" name="domaine" ng-model="vin.domaine"
+                       typeahead="domaine as domaine.nom for domaine in domaines($viewValue)" placeholder="Domaine">
                 <input type="text" name="nom" ng-model="vin.nom" placeholder="Nom" required>
                 <input type="number" name="millesime" ng-model="vin.millesime" placeholder="Millésime" required>
             </div>
@@ -17,8 +18,11 @@
                     ng-show="vinForm.region.$error.required || vinForm.appellation.$error.required">*</span></label>
 
             <div class="controls" class="controls-row">
-                <input type="text" name="region" ng-model="vin.region" typeahead="region as region.nom for region in regions($viewValue)" placeholder="Région">
-                <input type="text" name="appellation" ng-model="vin.appellation" typeahead="appellation for appellation in appellations | filter:$viewValue" placeholder="Appellation">
+                <input type="text" name="region" ng-model="vin.region"
+                       typeahead="region as region.nom for region in regions($viewValue)" placeholder="Région">
+                <input type="text" name="appellation" ng-model="vin.appellation"
+                       typeahead="appellation for appellation in appellations | filter:$viewValue"
+                       placeholder="Appellation">
             </div>
         </div>
 
@@ -27,11 +31,13 @@
                     ng-show="vinForm.typeVin.$error.required || vinForm.cepages.$error.required || vinForm.degre.$error.required">*</span></label>
 
             <div class="controls">
-                <input type="text" name="typeVin" ng-model="vin.typeVin" typeahead="type for type in types | filter:$viewValue" placeholder="Type" required>
-                <input type="text" name="cepages" ng-model="vin.cepages" typeahead="cepage for cepage in cepages | filter:$viewValue" placeholder="Cepage(s)" required>
+                <input type="text" name="typeVin" ng-model="vin.typeVin"
+                       typeahead="type for type in types | filter:$viewValue" placeholder="Type" required>
+                <input type="text" name="cepages" ng-model="vin.cepages"
+                       typeahead="cepage for cepage in cepages | filter:$viewValue" placeholder="Cepage(s)" required>
 
                 <div class="input-append">
-                    <input type="text" name="degre" ng-model="vin.degre"  placeholder="Degré" required>
+                    <input type="text" name="degre" ng-model="vin.degre" placeholder="Degré" required>
                     <span class="add-on">%</span>
                 </div>
             </div>
@@ -49,13 +55,6 @@
             <textarea name="vendanges" ng-model="vin.vendanges"/>
         </div>
 
-        <div class="control-group">
-            <div class="controls">
-                <a href="#/list/vins" class="btn">Cancel</a>
-                <button ng-click="save()" ng-disabled="!canSave()" class="btn btn-primary">Save</button>
-                <button ng-click="destroy()" ng-show="canDestroy()" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
-
+        <crud-buttons cancel="#/vin/index"></crud-buttons>
     </form>
 </div>

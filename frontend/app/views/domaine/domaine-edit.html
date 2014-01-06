@@ -1,4 +1,4 @@
-<div class="span8 offset2">
+<div ng-show="isLogged" class="span8 offset2">
     <form name="domaineForm" crud-edit="domaine">
         <div class="control-group">
             <label>Nom<span ng-show="domaineForm.nom.$error.required">*</span></label>
@@ -42,13 +42,6 @@
 
         </div>
 
-        <br>
-        <div class="control-group">
-            <div class="controls">
-                <a href="#/list/domaines" class="btn">Cancel</a>
-                <button ng-click="save()" ng-disabled="!canSave()" class="btn btn-primary">Save</button>
-                <button ng-click="destroy()" ng-show="canDestroy()" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
+        <crud-buttons cancel="#/domaine/index" ></crud-buttons>
     </form>
 </div>

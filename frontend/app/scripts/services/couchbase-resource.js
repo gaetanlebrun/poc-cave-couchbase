@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('db.resource', ['ngResource'])
+angular.module('db.resources')
     .factory('CouchbaseResource', function ($resource) {
         return function (url) {
             var CouchbaseResource = $resource(url,

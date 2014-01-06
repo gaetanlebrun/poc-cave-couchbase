@@ -26,8 +26,6 @@
  */
 package com.oxiane.caveavin.rest;
 
-import com.oxiane.caveavin.dao.ICouchDao;
-
 /**
  * User: LEBRUN_G
  * Date: 08/10/13
@@ -35,16 +33,4 @@ import com.oxiane.caveavin.dao.ICouchDao;
  */
 public class AbstractResource {
   // ------------------------------ FIELDS ------------------------------
-
-  private ICouchDao dao;
-
-  // --------------------- GETTER / SETTER METHODS ---------------------
-
-  public void setDao(ICouchDao dao) {
-    this.dao = dao;
-  }
-
-  protected ICouchDao getDao() {
-    return dao;
-  }
 }
