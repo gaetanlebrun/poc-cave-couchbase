@@ -2,4 +2,4 @@
 
 
 + Backend :  Spring + Jersey
-+ Frontend : AngularJS + Bootrap
++ Frontend : AngularJS + Bootstrap
