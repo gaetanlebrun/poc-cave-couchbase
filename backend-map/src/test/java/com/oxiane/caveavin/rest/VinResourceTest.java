@@ -9,11 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 
-/**
- * User: LEBRUN_G
- * Date: 30/09/13
- * Time: 14:40
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/WEB-INF/applicationContext.xml","/WEB-INF/securityContext.xml"})
 public class VinResourceTest extends CrudResourceTest {

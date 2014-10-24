@@ -13,13 +13,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: gaetan
- * Date: 10/6/13
- * Time: 2:13 PM
- * To change this template use File | Settings | File Templates.
- */
 public abstract class AbstractResourceTest {
   // ------------------------------ FIELDS ------------------------------
 

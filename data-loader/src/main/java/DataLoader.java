@@ -7,11 +7,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 
-/**
- * User: LEBRUN_G
- * Date: 08/10/13
- * Time: 17:02
- */
 public class DataLoader {
   // --------------------------- main() method ---------------------------
 

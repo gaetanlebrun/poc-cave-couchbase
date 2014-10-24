@@ -1,29 +1,3 @@
-/* +-----------------------------------------------------------------------------------------------+
- *                                                                                                
- *  Titre          : CaracteritiqueVinResource                                                                 
- *  Description    : Définition                                         
- *  Copyright      : Cofiroute 2013                                                            
- *  Societe        : Cofiroute                                                                    
- *  Author         : LEBRUN_G                                                                      
- *  Version        : 1.0.0                                                                        
- *  Package        : com.oxiane.caveavin.rest                                                              
- *  Parametre VM   : Neant                                                                        
- *  Parametre main : Neant                                                                        
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  Historique des mises a jour :                                                                 
- *  Auteur Date       Description                                                                 
- *  ------- ------------------------------------------------------------------------------------- 
- *  LEBRUN_G 08/10/13 Creation                                                                      
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  Remarques :                                                                                   
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  RAF : Neant                                                                                   
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- */
 package com.oxiane.caveavin.rest;
 
 import com.oxiane.caveavin.dao.ICouchDAO;
@@ -37,11 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * User: LEBRUN_G
- * Date: 08/10/13
- * Time: 17:38
- */
 @Path("rest/param")
 public class ParamResource extends AbstractResource {
   // ------------------------------ FIELDS ------------------------------

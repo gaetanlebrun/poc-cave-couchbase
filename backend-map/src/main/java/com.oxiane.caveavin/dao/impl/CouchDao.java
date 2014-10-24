@@ -1,29 +1,3 @@
-/* +-----------------------------------------------------------------------------------------------+
- *                                                                                                
- *  Titre          : CouchDao                                                                 
- *  Description    : D�finition                                         
- *  Copyright      : Cofiroute 2013                                                            
- *  Societe        : Cofiroute                                                                    
- *  Author         : LEBRUN_G                                                                      
- *  Version        : 1.0.0                                                                        
- *  Package        : com.oxiane.tracks.dao.impl                                                              
- *  Parametre VM   : Neant                                                                        
- *  Parametre main : Neant                                                                        
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  Historique des mises a jour :                                                                 
- *  Auteur Date       Description                                                                 
- *  ------- ------------------------------------------------------------------------------------- 
- *  LEBRUN_G 30/09/13 Creation                                                                      
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  Remarques :                                                                                   
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  RAF : Neant                                                                                   
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- */
 package com.oxiane.caveavin.dao.impl;
 
 import com.couchbase.client.CouchbaseClient;
@@ -37,11 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-/**
- * User: LEBRUN_G
- * Date: 30/09/13
- * Time: 14:06
- */
 public class CouchDao implements ICouchDAO {
   // ------------------------------ FIELDS ------------------------------
 

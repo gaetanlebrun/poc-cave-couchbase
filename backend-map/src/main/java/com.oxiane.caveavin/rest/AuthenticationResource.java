@@ -1,29 +1,3 @@
-/* +-----------------------------------------------------------------------------------------------+
- *                                                                                                
- *  Titre          : UserResource                                                                 
- *  Description    : Définition                                         
- *  Copyright      : Cofiroute 2013                                                            
- *  Societe        : Cofiroute                                                                    
- *  Author         : LEBRUN_G                                                                      
- *  Version        : 1.0.0                                                                        
- *  Package        : com.oxiane.caveavin.rest                                                              
- *  Parametre VM   : Neant                                                                        
- *  Parametre main : Neant                                                                        
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  Historique des mises a jour :                                                                 
- *  Auteur Date       Description                                                                 
- *  ------- ------------------------------------------------------------------------------------- 
- *  LEBRUN_G 22/10/13 Creation                                                                      
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  Remarques :                                                                                   
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- *  RAF : Neant                                                                                   
- *                                                                                                
- * +-----------------------------------------------------------------------------------------------+
- */
 package com.oxiane.caveavin.rest;
 
 import com.oxiane.caveavin.security.TokenUtils;
@@ -45,11 +19,6 @@ import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * User: LEBRUN_G
- * Date: 22/10/13
- * Time: 11:00
- */
 @Component
 @Path("/auth")
 public class AuthenticationResource {
